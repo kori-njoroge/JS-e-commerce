@@ -9,7 +9,6 @@
     <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" /> -->
     <link rel="stylesheet" href="style.css" />
-    <!-- <link rel="stylesheet" href="style2.css"> -->
     <title>Ecommerce</title>
 </head>
 
@@ -19,9 +18,12 @@
             <img src="./images/index.png" alt="logo" />
         </div>
         <div class="categories">
+            <ul>
+                <li onclick="getAllProducts()">Home</li>
+            </ul>
 
         </div>
-        <div class="cart">
+        <div class="cart" id="cart-el">
             <!-- <i class="far fa-cart-plus fa-2x"></i> -->
             <i class="fa-solid fa-cart-plus fa-2x"></i>
             <span id ="count">0</span>
