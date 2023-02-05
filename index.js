@@ -269,10 +269,10 @@ function displayCartItems() {
 
 
     async function getSingleForCart(...arr) {
-        let no = 3;
+        let no = 1;
         let displaArr = [];
         console.log("arr here", arr);
-        arr.map(async prod => {
+        arr.length >= 1?arr.map(async prod => {
             prod.map(async singlep => {
                 console.log(singlep)
                 console.log(typeof (prod))
@@ -280,9 +280,12 @@ function displayCartItems() {
                 let singleProductData = await data.json();
                 console.log(singleProductData)
                 displaArr.push(await singleProductData);
-                // console.log(displaArr)
-                // await displaArr.map(item => displayCartItems(item));
-                // oneItem(singleProductData)
+
+                // function addtocounter(){
+                //     no+=1;
+                //     num.innerText = no;
+                // }
+
                 cardMiddle.innerHTML += `  
                 <div class="cartTableBody">
                 <div class="itemContent">
@@ -303,17 +306,13 @@ function displayCartItems() {
             </br>
             `
             let num = document.getElementById("number");
-            // num.innerText = 90
+            num.innerText = no;
                 
             })
-        })
+        }) : cardMiddle.innerHTML=`<h2>No data</h2>`;
     }
 
     
-function addtocounter(){
-    no+=1;
-
-}
 
 getSingleForCart(cartArray)
 

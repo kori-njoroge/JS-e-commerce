@@ -13,27 +13,39 @@
 </head>
 
 <body>
-    <nav id="nav">
-        <div class="logo">
-            <img src="./images/index.png" alt="logo" />
-        </div>
-        <div class="categories">
-            <ul>
-                <li onclick="getAllProducts()">Home</li>
-            </ul>
+    <div>
 
-        </div>
-        <div class="cart" id="cart-el">
-            <!-- <i class="far fa-cart-plus fa-2x"></i> -->
-            <i class="fa-solid fa-cart-plus fa-2x" onclick="displayCartItems()"></i>
-            <span id ="count">0</span>
-        </div>
-        <div class="bars">
-            <i class="fa fa-bars fa-2x"></i>
-        </div>
-    </nav>
+        <nav id="nav">
+            <div class="logo">
+                <img src="./images/index.png" alt="logo" />
+            </div>
+            <div class="categories">
+                <ul>
+                    <li onclick="getAllProducts()">Home</li>
+                </ul>
+            </div>
+            <div class="cart" id="cart-el">
+                <!-- <i class="far fa-cart-plus fa-2x"></i> -->
+                <i class="fa-solid fa-cart-plus  " onclick="displayCartItems()"></i>
+                <span id ="count">0</span>
+                <div class="bars">
+                    <!-- <i class="fa fa-bars fa-2x"></i> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="feature-product">
+        <!-- <p>Welcome here to this shoppy we the best mahn</p> -->
+        <h1>Welcome</h1>
+        <p>Mordern and multi-product store</p>  
+        <h1>Our Products</h1>      
+    </div>
     <div id="bodyContainer">
 
+    </div>
+    <div class="footer">
+        <p> &#169;Copyright||2020.Ecommerce Shopping platform</p>
     </div>
     <script src="index.js"></script>
 </body>
