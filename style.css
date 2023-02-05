@@ -283,4 +283,10 @@ button{
 }
 
 
-
+.cartTableBody{
+    box-shadow: 10px 10px 10px 10px rgb(red, green, blue);
+    /* height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row; */
+}

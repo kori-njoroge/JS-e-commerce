@@ -70,25 +70,25 @@ async function getSingleProduct(id) {
 
 
 // get single item for cat.
-async function getSingleForCart(...arr) {
-    let displaArr = [];
-    console.log(arr);
-    bodyContent.innerHTML = ``;
-    arr.map(async prod => {
-        prod.map(async singlep => {
-            console.log(singlep)
-            console.log(typeof (prod))
-            let data = await fetch(`${singleProduct}${singlep.id}`);
-            let singleProductData = await data.json();
-            console.log(singleProductData)
-            displaArr.push(await singleProductData);
-            // console.log(displaArr)
-            // await displaArr.map(item => displayCartItems(item));
-            oneItem(singleProductData)
-        })
-    })
-    displayCartItems();
-}
+// async function getSingleForCart(...arr) {
+//     let displaArr = [];
+//     console.log(arr);
+//     bodyContent.innerHTML = ``;
+//     arr.map(async prod => {
+//         prod.map(async singlep => {
+//             console.log(singlep)
+//             console.log(typeof (prod))
+//             let data = await fetch(`${singleProduct}${singlep.id}`);
+//             let singleProductData = await data.json();
+//             console.log(singleProductData)
+//             displaArr.push(await singleProductData);
+//             // console.log(displaArr)
+//             // await displaArr.map(item => displayCartItems(item));
+//             oneItem(singleProductData)
+//         })
+//     })
+//     displayCartItems();
+// }
 
 
 // Calling the api functions.
@@ -237,10 +237,12 @@ function addToCart(id) {
 let cartIcon = document.getElementById("cart-el");
 console.log(cartIcon);
 let cartArray = JSON.parse(window.localStorage.getItem("count"));
-cartIcon.addEventListener("click", () => getSingleForCart(cartArray));
+cartIcon.addEventListener("click", () => displayCartItems());
 console.log("cartArray", cartArray);
 
 function displayCartItems() {
+    console.log("here")
+    bodyContent.innerHTML = ``;
     let cartPaage = document.createElement("div");
     bodyContent.appendChild(cartPaage);
     bodyContent.setAttribute("class","bigger");
@@ -256,13 +258,65 @@ function displayCartItems() {
         <h5 class="itemTotal">Total</h5>
     `
     cartPaage.appendChild(cartTop);
+    let cardMiddleParent = document.createElement("div");
+    cardMiddleParent.setAttribute("class","middleParent")
     let cardMiddle = document.createElement("div");
-    cartPaage.appendChild(cardMiddle);
-    cardMiddle.setAttribute("class","cartTableBody");
+    cartPaage.appendChild(cardMiddleParent);
+    cardMiddleParent.appendChild(cardMiddle)
+    // cardMiddle.setAttribute("class","cartTableBody");
     cardMiddle.setAttribute("id","cartTableBody");
-    cardMiddle.innerHTML += `  
-            ${oneItem()}
-    `
+
+
+
+    async function getSingleForCart(...arr) {
+        let no = 3;
+        let displaArr = [];
+        console.log("arr here", arr);
+        arr.map(async prod => {
+            prod.map(async singlep => {
+                console.log(singlep)
+                console.log(typeof (prod))
+                let data = await fetch(`${singleProduct}${singlep.id}`);
+                let singleProductData = await data.json();
+                console.log(singleProductData)
+                displaArr.push(await singleProductData);
+                // console.log(displaArr)
+                // await displaArr.map(item => displayCartItems(item));
+                // oneItem(singleProductData)
+                cardMiddle.innerHTML += `  
+                <div class="cartTableBody">
+                <div class="itemContent">
+                <img class="img-cart" src=${singleProductData.image} alt="item">
+                <div class="decription">
+                    <h5>${singleProductData.title}</h5>
+                    <small>${singleProductData.description}</small>
+                </div>
+                </div>
+            <div class="itemPrice"><h5>$${singleProductData.price}</h5></div>
+            <div class="quantity itemQuantity">
+                <button class="minus"> - </button> 
+                <span> <small id = "number">${no}</small></span>   
+                <button class="add" onclick = addtocounter()> + </button>    
+            </div>
+            <div><h5>${singleProductData.price * no }</div></h5>
+            </div>
+            </br>
+            `
+            let num = document.getElementById("number");
+            // num.innerText = 90
+                
+            })
+        })
+    }
+
+    
+function addtocounter(){
+    no+=1;
+
+}
+
+getSingleForCart(cartArray)
+
     let cartBottom = document.createElement("div")
     cartPaage.appendChild(cartBottom);
     cartBottom.setAttribute("class", "grandTotal");
@@ -276,34 +330,17 @@ function displayCartItems() {
     </div>
     
     `;
-    let cartItemContainer = document.getElementById("cartTableBody");
-    console.log("carrrrrrrrrrt", cartItemContainer)
 
 }
 
 
 // sub cart MOdule
 
-let oneItem =(...items)=> {
-    items.map(singleProd => {
-        `
-        <div class="itemContent">
-        <img class="img-cart" src=${singleProd.image} alt="item">
-        <div class="decription">
-            <h5>${singleProd.title}</h5>
-            <small>${singleProd.description}</small>
-        </div>
-        </div>
-    <div class="itemPrice"><h5>$${singleProd.price}</h5></div>
-    <div class="quantity itemQuantity">
-        <button class="minus"> - </button> 
-        <span> <small>1</small></span>   
-        <button class="add"> + </button>    
-    </div>
-    <div><h5>$199.99</div></h5>
-    `
-    })
-}
+// let oneItem =(...items)=> {
+//     items.map(singleProd => {
+        
+//     })
+// }
 
 
 
